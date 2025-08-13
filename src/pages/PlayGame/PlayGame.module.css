@@ -293,6 +293,7 @@
   gap: var(--spacing-lg);
   justify-content: center;
   margin-top: var(--spacing-xl);
+  padding: 0 0 var(--spacing-lg);
 }
 
 .startBtn {

@@ -305,12 +305,12 @@ const PlayGame: React.FC = () => {
       {/* Player Setup Modal */}
       {showPlayerSetup && (
         <div className="modal-overlay">
-          <div className={styles.playerSetupModal} onClick={(e) => e.stopPropagation()} style={modalStyle}>
+          <div className={styles.playerSetupModal} onClick={(e) => e.stopPropagation()} style={{...modalStyle, backgroundColor: currentGameBoard?.theme.card_color }}>
             <div className="modal-header" style={headerStyle}>
               <h2>Start New Game</h2>
             </div>
             
-            <div className="modal-content">
+            <div className={styles.playerSetupModal} style={{ backgroundColor: currentGameBoard?.theme.card_color }}>
               <form onSubmit={handleStartGame}>
                 <div className="form-group">
                   <label htmlFor="playerName">Player Name</label>
