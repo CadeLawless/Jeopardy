@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Category, DEFAULT_THEMES, GameTheme, Question } from "@/types"
 import styles from './GameBoardForm.module.css'
-import playStyles from '../../pages/PlayGame/PlayGame.module.css'
+//import playStyles from '../../pages/PlayGame/PlayGame.module.css'
 import { Link } from "react-router-dom"
 
 export interface GameBoardFormData {
