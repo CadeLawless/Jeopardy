@@ -18,6 +18,10 @@
     "react-router-dom": "^7.7.1",
     "zustand": "^5.0.7"
   },
+  "engines": {
+    "node": ">=20.0.0 <21.0.0",
+    "npm": ">=9.0.0"
+  },
   "devDependencies": {
     "typescript": "^5.5.3",
     "vite": "^5.4.2"
