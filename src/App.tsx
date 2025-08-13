@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAuthStore } from '@/context/authContext'
 import AppHeader from '@/components/AppHeader'
 import AppRoutes from '@/routes/AppRoutes'

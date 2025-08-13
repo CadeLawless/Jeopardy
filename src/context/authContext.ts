@@ -14,12 +14,14 @@ interface AuthState {
   initializeAuth: () => Promise<void>
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set, _get) => ({
   user: null,
   loading: false,
   isAuthenticated: false,
 
   signUp: async (email: string, password: string, fullName?: string) => {
+    if (!supabase) throw new Error('Supabase client not initialized');
+
     set({ loading: true })
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -42,6 +44,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signIn: async (email: string, password: string) => {
+    if (!supabase) throw new Error('Supabase client not initialized');
+
     set({ loading: true })
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -59,6 +63,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signOut: async () => {
+    if (!supabase) throw new Error('Supabase client not initialized');
+    
     set({ loading: true })
     try {
       const { error } = await supabase.auth.signOut()
@@ -72,6 +78,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   resetPassword: async (email: string) => {
+    if (!supabase) throw new Error('Supabase client not initialized');
+    
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email)
       if (error) throw error
@@ -82,6 +90,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   updateProfile: async (updates: Partial<User>) => {
+    if (!supabase) throw new Error('Supabase client not initialized');
+    
     set({ loading: true })
     try {
       const { data, error } = await supabase.auth.updateUser({
@@ -108,6 +118,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   initializeAuth: async () => {
+    if (!supabase) throw new Error('Supabase client not initialized');
+    
     const { data: { session } } = await supabase.auth.getSession()
     
     if (session?.user) {
@@ -121,7 +133,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({ user, isAuthenticated: true })
     }
 
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         const user = {
           id: session.user.id,

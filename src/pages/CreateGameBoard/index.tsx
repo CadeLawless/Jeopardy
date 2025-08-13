@@ -146,7 +146,7 @@ const CreateGameBoard: React.FC = () => {
     e.preventDefault()
     if (!user || !isFormValid()) return
     
-    const { data, error } = await createGameBoard({
+    const { error } = await createGameBoard({
       ...gameBoard,
       user_id: user.id
     })
