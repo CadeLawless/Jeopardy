@@ -12,26 +12,6 @@ const CreateGameBoard: React.FC = () => {
   const { createGameBoard, loading } = useGameBoardStore()
   
   const [selectedTheme, setSelectedTheme] = useState<GameTheme | null>(null)
-  const [gameBoard, setGameBoard] = useState<Omit<GameBoard, 'id' | 'created_at' | 'updated_at'>>({
-    user_id: "",
-    title: "",
-    description: "",
-    categories: [],
-    theme: DEFAULT_THEMES[0]
-  });
-
-  useEffect(() => {
-    const saved = localStorage.getItem("gameBoard");
-    if (saved) {
-      try {
-        setGameBoard(JSON.parse(saved));
-      } catch {}
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("gameBoard", JSON.stringify(gameBoard));
-  }, [gameBoard]);
 
   const generateId = () => Math.random().toString(36).substr(2, 9)
 
@@ -55,6 +35,36 @@ const CreateGameBoard: React.FC = () => {
     }
     return categories
   }
+
+  const [gameBoard, setGameBoard] = useState<Omit<GameBoard, 'id' | 'created_at' | 'updated_at'>>({
+    user_id: "",
+    title: "",
+    description: "",
+    categories: createDefaultCategories(),
+    theme: DEFAULT_THEMES[0]
+  });
+
+  useEffect(() => {
+    if(user) localStorage.setItem("gameBoard", JSON.stringify(gameBoard));
+  }, [gameBoard]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("gameBoard");
+    if (saved) {
+      try {
+        setGameBoard(JSON.parse(saved));
+        return
+      } catch {}
+    }
+
+    if (user) {
+      setGameBoard(prev => ({
+        ...prev,
+        user_id: user.id,
+      }))
+      selectTheme(DEFAULT_THEMES[0])
+    }
+  }, [user]);
 
   const selectTheme = (theme: GameTheme) => {
     const newTheme = { ...theme }
@@ -157,24 +167,6 @@ const CreateGameBoard: React.FC = () => {
       navigate('/game-boards')
     }
   }
-
-  useEffect(() => {
-    const saved = localStorage.getItem("gameBoard");
-    if (saved) {
-      try {
-        setGameBoard(JSON.parse(saved));
-      } catch {}
-    } else {
-      if (user) {
-        setGameBoard(prev => ({
-          ...prev,
-          user_id: user.id,
-          categories: createDefaultCategories()
-        }))
-        selectTheme(DEFAULT_THEMES[0])
-      }
-    }
-  }, [user]);
 
   return (
     <div className={styles.createGameBoard}>

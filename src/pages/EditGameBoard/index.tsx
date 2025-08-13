@@ -23,17 +23,22 @@ const EditGameBoard: React.FC = () => {
   });
 
   useEffect(() => {
+    if(!isLoading) localStorage.setItem("gameData", JSON.stringify(gameData));
+  }, [gameData]);
+
+  useEffect(() => {
     const saved = localStorage.getItem("gameData");
     if (saved) {
       try {
         setGameData(JSON.parse(saved));
+        return; // skip API fetch if we already have localStorage data
       } catch {}
-    }
-  }, []);
+    } 
 
-  useEffect(() => {
-    localStorage.setItem("gameData", JSON.stringify(gameData));
-  }, [gameData]);
+    if (id && user) {
+      loadGameBoard();
+    }
+  }, [id, user])
 
   const selectTheme = (theme: GameTheme) => {
     setSelectedTheme({ ...theme })
@@ -168,20 +173,6 @@ const EditGameBoard: React.FC = () => {
       setMessage('')
     }, 3000)
   }
-
-  useEffect(() => {
-    const saved = localStorage.getItem("gameData");
-    if (saved) {
-      try {
-        setGameData(JSON.parse(saved));
-        return; // skip API fetch if we already have localStorage data
-      } catch {}
-    } else {
-      if (id && user) {
-        loadGameBoard();
-      }
-    }
-  }, [id, user])
 
   if (isLoading) {
     return (
