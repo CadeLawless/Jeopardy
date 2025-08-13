@@ -1,0 +1,101 @@
+.gameBoardCard {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.gameBoardCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.cardHeader {
+  padding: var(--spacing-lg);
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cardDescription {
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+}
+
+.cardPreview {
+  padding: var(--spacing-lg);
+  min-height: 120px;
+  background-size: cover;
+  background-position: center;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.previewCategory {
+  padding: var(--spacing-sm);
+  text-align: center;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.cardActions {
+  display: flex;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-sm);
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex: 1;
+  justify-content: center;
+}
+
+.actionBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.playBtn {
+  background-color: var(--success-color);
+  color: var(--text-white);
+}
+
+.playBtn:hover {
+  background-color: #059669;
+}
+
+.editBtn {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+}
+
+.editBtn:hover {
+  background-color: var(--primary-hover);
+}
+
+.deleteBtn {
+  background-color: var(--error-color);
+  color: var(--text-white);
+}
+
+.deleteBtn:hover {
+  background-color: #dc2626;
+}
