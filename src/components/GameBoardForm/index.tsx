@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Category, DEFAULT_THEMES, GameTheme, Question } from "@/types"
 import styles from './GameBoardForm.module.css'
+import playStyles from '../../pages/PlayGame/PlayGame.module.css'
 import { Link } from "react-router-dom"
 
 export interface GameBoardFormData {
@@ -232,7 +233,36 @@ const GameBoardForm = ({
                 {gameData.theme && (
                 <div className={styles.formSection}>
                     <h2>Customize Theme</h2>
-                    
+                    <div className={styles.themeGrid}>
+                        <div className={styles.themeOption}>
+                            <div className={styles.themePreview} style={{ background: gameData.theme.background_color }}>
+                            <div 
+                                className={styles.previewHeader} 
+                                style={{ 
+                                backgroundColor: gameData.theme.header_color, 
+                                color: gameData.theme.header_text_color 
+                                }}
+                            >
+                                Custom Theme
+                            </div>
+                            <div className={styles.previewCards}>
+                                {[1, 2, 3].map(i => (
+                                <div
+                                    key={i}
+                                    className={styles.previewCard}
+                                    style={{ 
+                                    backgroundColor: gameData.theme.card_color, 
+                                    color: gameData.theme.card_text_color, 
+                                    borderRadius: gameData.theme.border_radius + 'px' 
+                                    }}
+                                >
+                                    ${i * 100}
+                                </div>
+                                ))}
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className={styles.themeCustomization}>
                     <div className={styles.colorControls}>
                         <div className={styles.colorGroup}>
@@ -298,7 +328,7 @@ const GameBoardForm = ({
                     
                     <div className="style-controls">
                         <div className="form-group">
-                        <label htmlFor="borderRadius">Border Radius: {gameData.theme.border_radius}px</label>
+                        <label htmlFor="borderRadius">Border Radius for Cards: {gameData.theme.border_radius}px</label>
                         <input
                             id="borderRadius"
                             value={gameData.theme.border_radius}
@@ -309,19 +339,7 @@ const GameBoardForm = ({
                             className={styles.rangeInput}
                         />
                         </div>
-                        
-                        <div className="form-group">
-                        <label htmlFor="backgroundImage">Background Image URL (Optional)</label>
-                        <input
-                            id="backgroundImage"
-                            value={gameData.theme.background_image || ''}
-                            onChange={(e) => updateTheme('background_image', e.target.value)}
-                            type="url"
-                            className="form-input"
-                            placeholder="https://example.com/image.jpg"
-                        />
                         </div>
-                    </div>
                     </div>
                 </div>
                 )}
