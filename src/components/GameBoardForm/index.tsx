@@ -234,7 +234,7 @@ const GameBoardForm = ({
                 <div className={styles.formSection}>
                     <h2>Customize Theme</h2>
                     <div className={styles.themeGrid}>
-                        <div className={styles.themeOption}>
+                        <div className={`${styles.themeOption} ${styles.previewOption}`}>
                             <div className={styles.themePreview} style={{ background: gameData.theme.background_color }}>
                             <div 
                                 className={styles.previewHeader} 

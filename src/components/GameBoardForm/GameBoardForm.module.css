@@ -35,8 +35,12 @@
     cursor: pointer;
     transition: all var(--transition-fast);
   }
+
+  .previewOption {
+    cursor: default;
+  }
   
-  .themeOption:hover {
+  .themeOption:not(.previewOption):hover {
     border-color: var(--primary-color);
     transform: translateY(-2px);
   }

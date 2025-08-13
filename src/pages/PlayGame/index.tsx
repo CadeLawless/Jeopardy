@@ -222,7 +222,7 @@ const PlayGame: React.FC = () => {
             ))}
           </div>
           
-          <div className="questions-grid">
+          <div className={styles.questionsGrid}>
             {currentGameBoard.categories.map(category => (
               <div key={category.id} className={styles.categoryColumn}>
                 {category.questions.map(question => (
@@ -249,23 +249,23 @@ const PlayGame: React.FC = () => {
       {/* Question Modal */}
       {selectedQuestion && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className={styles.questionModal} onClick={(e) => e.stopPropagation()} style={modalStyle}>
+          <div className={styles.questionModal} onClick={(e) => e.stopPropagation()} style={{...modalStyle, backgroundColor: currentGameBoard?.theme.card_color }}>
             <div className="modal-header" style={headerStyle}>
               <h2>{selectedQuestion.points} Points</h2>
               <button onClick={closeModal} className="close-btn">&times;</button>
             </div>
             
-            <div className="modal-content">
+            <div className="modal-content" style={{ backgroundColor: currentGameBoard?.theme.card_color }}>
               {!showAnswer ? (
-                <div className={styles.questionDisplay}>
-                  <h3>Question:</h3>
-                  <p className={styles.questionText}>{selectedQuestion.question}</p>
+                <div className={styles.questionDisplay} style={{ backgroundColor: currentGameBoard?.theme.card_color, color: currentGameBoard?.theme.card_text_color }}>
+                  <h3 style={{ color: currentGameBoard?.theme.card_text_color }}>Question:</h3>
+                  <p className={styles.questionText} style={{ backgroundColor: currentGameBoard?.theme.card_color, color: currentGameBoard?.theme.card_text_color }}>{selectedQuestion.question}</p>
                   <button onClick={revealAnswer} className={styles.revealBtn}>Reveal Answer</button>
                 </div>
               ) : (
                 <div className={styles.answerDisplay}>
                   <h3>Answer:</h3>
-                  <p className={styles.answerText}>{selectedQuestion.answer}</p>
+                  <p className={styles.answerText} style={{ backgroundColor: currentGameBoard?.theme.card_color }}>{selectedQuestion.answer}</p>
                   
                   <div className={styles.scoringControls}>
                     <button onClick={() => markAnswer(true)} className={styles.correctBtn}>Correct</button>
