@@ -1,0 +1,25 @@
+.categoryHeader {
+    padding: var(--spacing-sm);
+    text-align: center;
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+}
+
+.categoryHeaderText {
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .categoryHeader {
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .categoryHeader {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-xs);
+    }
+}

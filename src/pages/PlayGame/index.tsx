@@ -4,6 +4,7 @@ import { useAuthStore } from '@/context/authContext'
 import { useGameBoardStore } from '@/context/gameBoardContext'
 import type { Question } from '@/types'
 import styles from './PlayGame.module.css'
+import ScrollingGameHeader from '@/components/ScrollingGameHeader'
 
 const PlayGame: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -212,13 +213,11 @@ const PlayGame: React.FC = () => {
         <div className={styles.gameBoard}>
           <div className={styles.categoriesHeader}>
             {currentGameBoard.categories.map(category => (
-              <div
+              <ScrollingGameHeader
+                text={category.name}
                 key={category.id}
-                className={styles.categoryHeader}
-                style={categoryHeaderStyle}
-              >
-                {category.name}
-              </div>
+                categoryHeaderStyle={categoryHeaderStyle}
+              />
             ))}
           </div>
           
@@ -264,8 +263,8 @@ const PlayGame: React.FC = () => {
                 </div>
               ) : (
                 <div className={styles.answerDisplay}>
-                  <h3>Answer:</h3>
-                  <p className={styles.answerText} style={{ backgroundColor: currentGameBoard?.theme.card_color }}>{selectedQuestion.answer}</p>
+                  <h3 style={{ color: currentGameBoard?.theme.card_text_color }}>Answer:</h3>
+                  <p className={styles.answerText} style={{ backgroundColor: currentGameBoard?.theme.card_color, color: currentGameBoard?.theme.card_text_color }}>{selectedQuestion.answer}</p>
                   
                   <div className={styles.scoringControls}>
                     <button onClick={() => markAnswer(true)} className={styles.correctBtn}>Correct</button>
@@ -311,9 +310,9 @@ const PlayGame: React.FC = () => {
             </div>
             
             <div className={styles.playerSetupModal} style={{ backgroundColor: currentGameBoard?.theme.card_color }}>
-              <form onSubmit={handleStartGame}>
+              <form onSubmit={handleStartGame} className={styles.playerSetupForm}>
                 <div className="form-group">
-                  <label htmlFor="playerName">Player Name</label>
+                  <label htmlFor="playerName" style={{ color: currentGameBoard?.theme.card_text_color }}>Player Name</label>
                   <input
                     id="playerName"
                     value={playerName}

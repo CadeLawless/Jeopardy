@@ -68,13 +68,6 @@
   margin-bottom: var(--spacing-md);
 }
 
-.categoryHeader {
-  padding: var(--spacing-sm);
-  text-align: center;
-  font-weight: 700;
-  font-size: var(--font-size-lg);
-}
-
 .questionsGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -135,10 +128,13 @@
   background-color: var(--bg-card);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  max-width: 600px;
-  width: 100%;
+  width: min(600px, 100%);
   max-height: 90vh;
   overflow-y: auto;
+}
+
+.playerSetupForm {
+  padding: var(--spacing-lg);
 }
 
 .questionDisplay,
@@ -294,6 +290,8 @@
   justify-content: center;
   margin-top: var(--spacing-xl);
   padding: 0 0 var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  line-height: normal;
 }
 
 .startBtn {
@@ -347,11 +345,7 @@
   .formActions {
     flex-direction: column-reverse;
   }
-  
-  .categoriesHeader {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  
+    
   .gameBoard {
     padding: var(--spacing-md);
   }
@@ -360,22 +354,28 @@
   .answerText {
     font-size: var(--font-size-lg);
   }
+
+  .pointValue {
+    font-size: var(--font-size-xl);
+  }
 }
 
 @media (max-width: 480px) {
   .categoriesHeader {
-    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .questionsGrid {
     gap: var(--spacing-sm);
   }
   
   .categoryColumn {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-sm);
   }
-  
-  .questionCard {
-    aspect-ratio: 1.2;
-    font-size: var(--font-size-base);
+
+  .pointValue {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm);
   }
+
 }
