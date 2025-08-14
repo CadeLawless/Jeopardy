@@ -12,13 +12,12 @@
 }
 
 .cardHeader {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
 }
 
 .cardTitle {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  margin-bottom: var(--spacing-sm);
 }
 
 .cardDescription {
@@ -27,8 +26,8 @@
 }
 
 .cardPreview {
-  padding: var(--spacing-lg);
-  min-height: 120px;
+  padding: var(--spacing-md);
+  min-height: 80px;
   background-size: cover;
   background-position: center;
 }
@@ -49,6 +48,7 @@
 
 .cardActions {
   display: flex;
+  justify-content: center;
   padding: var(--spacing-lg);
   gap: var(--spacing-sm);
 }
@@ -64,7 +64,6 @@
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
-  flex: 1;
   justify-content: center;
 }
 
@@ -98,4 +97,20 @@
 
 .deleteBtn:hover {
   background-color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .previewGrid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--spacing-xs);
+  }  
+  .cardPreview {
+    min-height: 0;
+  }
+  .previewCategory {
+    padding: var(--spacing-xs);
+  }
+  .cardActions {
+    padding: var(--spacing-md);
+  }  
 }

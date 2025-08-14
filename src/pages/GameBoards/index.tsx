@@ -37,8 +37,10 @@ const GameBoards: React.FC = () => {
     <div className={styles.gameBoardsContainer}>
       <div className="page-header">
         <div className="header-content">
-          <h1>My Game Boards</h1>
-          <p>Create, edit, and manage your Jeopardy games</p>
+          <div>
+            <h1>My Game Boards</h1>
+            <p>Create, edit, and manage your Jeopardy games</p>
+          </div>
           
           <Link to="/game-boards/create" className="create-button">
             <svg viewBox="0 0 20 20" fill="currentColor">

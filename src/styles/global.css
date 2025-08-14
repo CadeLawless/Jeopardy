@@ -272,6 +272,11 @@ input, textarea, select {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
 }
 
 .header-content h1 {
@@ -311,8 +316,7 @@ input, textarea, select {
   background-color: var(--bg-card);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  max-width: 600px;
-  width: 100%;
+  width: min(600px, 100%);
   max-height: 90vh;
   overflow-y: auto;
 }
