@@ -3,6 +3,9 @@
     text-align: center;
     font-weight: 700;
     font-size: var(--font-size-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .categoryHeaderText {
