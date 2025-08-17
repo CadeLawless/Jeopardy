@@ -251,7 +251,7 @@ const PlayGame: React.FC = () => {
           <div className={styles.questionModal} onClick={(e) => e.stopPropagation()} style={{...modalStyle, backgroundColor: currentGameBoard?.theme.card_color }}>
             <div className="modal-header" style={headerStyle}>
               <h2>{selectedQuestion.points} Points</h2>
-              <button onClick={closeModal} className="close-btn">&times;</button>
+              <button onClick={closeModal} style={{ color: currentGameBoard?.theme.header_text_color }} className="close-btn">&times;</button>
             </div>
             
             <div className="modal-content" style={{ backgroundColor: currentGameBoard?.theme.card_color }}>
